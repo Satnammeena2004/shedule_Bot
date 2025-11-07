@@ -18,26 +18,23 @@ const mcaITimetable = {
         type: "lecture",
       },
       {
-        time: "10:30AM-11:30AM",
-        subject: "Lab on TC",
-        faculty: "NP",
+        time: "10:30AM-12:30PM",
+        subject: "Lab on DS",
+        faculty: "Rekha",
         type: "lab",
         duration: 2,
       },
       {
-        time: "11:30AM-12:30PM",
-        subject: "Lab on TC",
-        faculty: "NP",
-        type: "lab",
-        continued: true,
-      },
-      {
-        time: "12:30PM-01:30PM",
+        time: "12:30PM-1:30PM",
         subject: "COA",
-        faculty: "PRD",
+        faculty: "Pf.Reena D",
         type: "lecture",
       },
-      { time: "01:30PM-02:00PM", subject: "Break", type: "break" },
+      {
+        time: "01:30PM-02:00PM",
+        subject: "Break",
+        type: "break",
+      },
       {
         time: "02:00PM-03:00PM",
         subject: "DBMS",
@@ -49,12 +46,6 @@ const mcaITimetable = {
         subject: "DS",
         faculty: "OPR",
         type: "lecture",
-      },
-      {
-        time: "04:00PM-05:00PM",
-        subject: "Seminar",
-        faculty: "PRD",
-        type: "seminar",
       },
     ],
     Tuesday: [
@@ -65,23 +56,16 @@ const mcaITimetable = {
         type: "lecture",
       },
       {
-        time: "10:30AM-11:30AM",
+        time: "10:30AM-12:30PM",
         subject: "Lab on DS",
         faculty: "Rekha",
         type: "lab",
         duration: 2,
       },
       {
-        time: "11:30AM-12:30PM",
-        subject: "Lab on DS",
-        faculty: "Rekha",
-        type: "lab",
-        continued: true,
-      },
-      {
         time: "12:30PM-01:30PM",
         subject: "COA",
-        faculty: "PRD",
+        faculty: "Pf. Reena D",
         type: "lecture",
       },
       { time: "01:30PM-02:00PM", subject: "Break", type: "break" },
@@ -96,12 +80,6 @@ const mcaITimetable = {
         subject: "DS",
         faculty: "OPR",
         type: "lecture",
-      },
-      {
-        time: "04:00PM-05:00PM",
-        subject: "Seminar",
-        faculty: "PRD",
-        type: "seminar",
       },
     ],
     Wednesday: [
@@ -112,18 +90,11 @@ const mcaITimetable = {
         type: "lecture",
       },
       {
-        time: "10:30AM-11:30AM",
-        subject: "Lab on DS",
-        faculty: "Rekha",
+        time: "10:30AM-12:30PM",
+        subject: "Lab on TC",
+        faculty: "NP",
         type: "lab",
         duration: 2,
-      },
-      {
-        time: "11:30AM-12:30PM",
-        subject: "Lab on DS",
-        faculty: "Rekha",
-        type: "lab",
-        continued: true,
       },
       {
         time: "12:30PM-01:30PM",
@@ -139,12 +110,11 @@ const mcaITimetable = {
         type: "lecture",
       },
       {
-        time: "03:00PM-04:00PM",
+        time: "03:00PM-05:00PM",
         subject: "Seminar",
         faculty: "PRD",
         type: "seminar",
       },
-      { time: "04:00PM-05:00PM", subject: "Free", type: "free" },
     ],
     Thursday: [
       {
@@ -154,19 +124,13 @@ const mcaITimetable = {
         type: "lecture",
       },
       {
-        time: "10:30AM-11:30AM",
+        time: "10:30AM-12:30PM",
         subject: "DBMS Lab",
         faculty: "Poonam",
         type: "lab",
         duration: 2,
       },
-      {
-        time: "11:30AM-12:30PM",
-        subject: "DBMS Lab",
-        faculty: "Poonam",
-        type: "lab",
-        continued: true,
-      },
+
       {
         time: "12:30PM-01:30PM",
         subject: "COA",
@@ -181,28 +145,19 @@ const mcaITimetable = {
         type: "lecture",
       },
       {
-        time: "03:00PM-04:00PM",
+        time: "03:00PM-05:00PM",
         subject: "Seminar",
         faculty: "PRD",
         type: "seminar",
       },
-      { time: "04:00PM-05:00PM", subject: "Free", type: "free" },
     ],
     Friday: [
-      { time: "09:30AM-10:30AM", subject: "Free", type: "free" },
       {
-        time: "10:30AM-11:30AM",
+        time: "10:30AM-12:30PM",
         subject: "DBMS Lab",
         faculty: "Poonam",
         type: "lab",
         duration: 2,
-      },
-      {
-        time: "11:30AM-12:30PM",
-        subject: "DBMS Lab",
-        faculty: "Poonam",
-        type: "lab",
-        continued: true,
       },
       {
         time: "12:30PM-01:30PM",
@@ -223,29 +178,20 @@ const mcaITimetable = {
         faculty: "PCG",
         type: "lecture",
       },
-      { time: "04:00PM-05:00PM", subject: "Free", type: "free" },
     ],
     Saturday: [
-      { time: "09:30AM-10:30AM", subject: "Free", type: "free" },
       {
-        time: "10:30AM-11:30AM",
+        time: "10:30AM-12:30PM",
         subject: "Lab on DS",
         faculty: "Rekha",
         type: "lab",
         duration: 2,
       },
       {
-        time: "11:30AM-12:30PM",
-        subject: "Lab on DS",
-        faculty: "Rekha",
-        type: "lab",
-        continued: true,
-      },
-      {
-        time: "12:30PM-01:30PM",
-        subject: "TC",
+        time: "12:30AM-01:30PM",
+        subject: "Lab on TC",
         faculty: "NP",
-        type: "lecture",
+        type: "lab",
       },
       { time: "01:30PM-02:00PM", subject: "Break", type: "break" },
       {
@@ -260,12 +206,11 @@ const mcaITimetable = {
         faculty: "PCG",
         type: "lecture",
       },
-      { time: "04:00PM-05:00PM", subject: "Free", type: "free" },
     ],
   },
   subjects: {
     DM: "Discrete Mathematics",
-    TC: "Theory of Computation",
+    TC: "Technical Communication",
     COA: "Computer Organization & Architecture",
     DBMS: "Database Management System",
     DS: "Data Structures",
@@ -282,9 +227,6 @@ function parseTime(t) {
   if (period.toUpperCase() === "AM" && hour === 12) hour = 0;
   return { hour, minute };
 }
-
-
-
 
 const INLINE_KEYBOARD_LIST = {
   parse_mode: "HTML",
