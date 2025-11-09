@@ -218,7 +218,6 @@ const mcaITimetable = {
   },
 };
 
-// Convert "09:30AM" to 24h { hour: 9, minute: 30 }
 function parseTime(t) {
   const [_, hourStr, minuteStr, period] = t.match(/(\d{1,2}):(\d{2})(AM|PM)/i);
   let hour = parseInt(hourStr);
@@ -236,7 +235,31 @@ const INLINE_KEYBOARD_LIST = {
         { text: "Today’s Schedule", callback_data: "today_schedule" },
         { text: "Next Class", callback_data: "next_class" },
       ],
-      [{ text: "Upcoming Classes", callback_data: "upcoming_classes" }],
+      [
+        { text: "Upcoming Classes", callback_data: "upcoming_classes" },
+        { text: "See Schedule By Day", callback_data: "shedule_by_day" },
+      ],
+    ],
+  },
+};
+
+const DAYS = {
+  parse_mode: "HTML",
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: "Monday", callback_data: "monday" },
+        { text: "Tuesday", callback_data: "tuesday" },
+      ],
+      [
+        { text: "Wednesday", callback_data: "wednesday" },
+        { text: "Thursday", callback_data: "thursday" },
+      ],
+      [
+        { text: "Friday", callback_data: "friday" },
+        { text: "Saturday", callback_data: "saturday" },
+      ],
+      [{ text: "Back", callback_data: "back_to_main" }],
     ],
   },
 };
@@ -252,7 +275,10 @@ bot.onText(/\/start/, (msg) => {
 function nextClassesHandler() {
   const now = new Date();
   const days = Object.keys(mcaITimetable.schedule);
-  const today = days[now.getDay() - 1]; // getDay() -> Sunday=0
+  if (now.getDay() == 0) {
+    return `🎉 Today is Sunday! No classes scheduled. Enjoy your day off!`;
+  }
+  const today = days[now.getDay() - 1];
   const todayClasses = mcaITimetable.schedule[today] || [];
   let msg = "";
 
@@ -278,6 +304,9 @@ function nextClassesHandler() {
 function upcomingClasses() {
   const now = new Date();
   const days = Object.keys(mcaITimetable.schedule);
+  if (now.getDay() == 0) {
+    return `🎉 Today is Sunday! No classes scheduled. Enjoy your day off!`;
+  }
   const today = days[now.getDay() - 1]; // getDay() -> Sunday=0
   const todayClasses = mcaITimetable.schedule[today] || [];
   let msg = "";
@@ -301,6 +330,24 @@ function upcomingClasses() {
     return msg;
   }
   return false;
+}
+
+function sheduleByDay(day) {
+  const d = day.charAt(0).toUpperCase() + day.slice(1);
+  const todayClasses = mcaITimetable.schedule[d] || [];
+  let msgString = `
+🎓 *Class Notification*
+    ━━━━━━━━━━━━━━━
+`;
+  todayClasses.forEach((cls) => {
+    msgString += `
+━━━━━━━━━━━━━━━━
+📚 Subject: <b>${cls.subject}</b>
+👨‍🏫 Faculty: <b>${cls.faculty || "N/A"}</b>
+⏰ Time: <b>${cls.time}</b>
+ `;
+  });
+  return msgString;
 }
 
 bot.onText(/\/nextclass/, async (msg) => {
@@ -329,7 +376,11 @@ bot.onText(/\/upcoming/, async (msg) => {
 function todayScheduleHandler() {
   const now = new Date();
   const days = Object.keys(mcaITimetable.schedule);
+  if (now.getDay() == 0) {
+    return `🎉 Today is Sunday! No classes scheduled. Enjoy your day off!`;
+  }
   const today = days[now.getDay() - 1]; // getDay() -> Sunday=0
+  console.log(today);
   const todayClasses = mcaITimetable.schedule[today] || [];
   let msgString = `
 🎓 *Class Notification*
@@ -382,6 +433,25 @@ bot.on("callback_query", async (callbackQuery) => {
         INLINE_KEYBOARD_LIST
       );
     }
+  }
+  if (data === "shedule_by_day") {
+    bot.sendMessage(msg.chat.id, `Choose a day to see the schedule:`, DAYS);
+  }
+  if (data === "back_to_main") {
+    bot.sendMessage(msg.chat.id, `Main Menu:`, INLINE_KEYBOARD_LIST);
+  }
+  if (
+    [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+    ].includes(data)
+  ) {
+    const message = sheduleByDay(data);
+    bot.sendMessage(msg.chat.id, message, DAYS);
   }
 });
 
